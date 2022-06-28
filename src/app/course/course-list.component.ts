@@ -19,7 +19,7 @@ export class CourseListComponent implements OnInit {
   price:99.99,
   code:'XPS-123',
   duration:120,
-  rating:5.4,
+  rating:3.5,
   realeseDate:"Junho, 27, 2022"
 
     },
@@ -30,7 +30,7 @@ export class CourseListComponent implements OnInit {
   price:45.99,
   code:'LKL-123',
   duration:80,
-  rating:4,
+  rating:4.5,
   realeseDate:"Outubro, 20, 2000"
     }
 
