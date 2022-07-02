@@ -19,29 +19,33 @@ import { CourseInfoComponent } from './courses/course-info.component';
     ReplacePipe,
     NavBarComponent,
     Error404Component,
-    CourseInfoComponent
-
+    CourseInfoComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot([
       {
-        path:'courses', component:CourseListComponent
+        path: 'courses',
+        component: CourseListComponent,
       },
       {
-        path:'courses/info/:id', component:CourseInfoComponent
+        path: 'courses/info/:id',
+        component: CourseInfoComponent,
       },
       {
-        path:'', redirectTo:'courses', pathMatch:'full'
+        path: '',
+        redirectTo: 'courses',
+        pathMatch: 'full',
       },
 
       {
-        path:'**',component:Error404Component
-      }
-    ])
+        path: '**',
+        component: Error404Component,
+      },
+    ]),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
