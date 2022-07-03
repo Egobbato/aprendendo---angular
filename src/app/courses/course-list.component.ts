@@ -1,41 +1,45 @@
-import { Component, inject, OnInit } from "@angular/core";
-import {Course} from "./course"
+import { Component, inject, OnInit } from '@angular/core';
+import { Course } from './course';
 import { CourseService } from './course.service';
 
-@Component ({
-  templateUrl:'./course-list.component.html'
+@Component({
+  templateUrl: './course-list.component.html',
 })
-
-
 export class CourseListComponent implements OnInit {
+  filteredCourses: Course[] = [];
 
-  filteredCourses: Course []=[];
+  _courses: Course[] = [];
 
-  _courses: Course [] = [];
+  _filterBy: string = '';
 
-  _filterBy:string =''
-
-  constructor (private CourseService:CourseService) {}
-
-
+  constructor(private CourseService: CourseService) {}
 
   ngOnInit(): void {
-
-    this._courses=this.CourseService.retrieveAll();
-    this.filteredCourses = this._courses;
-
+    this.retrieveAll();
   }
 
-  set filter (value:string){
+  retrieveAll(): void {
+    this.CourseService.retrieveAll().subscribe({
+      next: (courses) => {
+        this._courses = courses;
+        this.filteredCourses = this._courses;
+      },
+      error: (err) => console.log('Error', err),
+    });
+  }
+
+  set filter(value: string) {
     this._filterBy = value;
 
-    this.filteredCourses=this._courses.filter((course: Course) => course.name.toLocaleLowerCase().indexOf(this._filterBy.toLocaleLowerCase()) > -1);
-
+    this.filteredCourses = this._courses.filter(
+      (course: Course) =>
+        course.name
+          .toLocaleLowerCase()
+          .indexOf(this._filterBy.toLocaleLowerCase()) > -1
+    );
   }
 
-  get filter (){
-
-    return this._filterBy
-  };
-
+  get filter() {
+    return this._filterBy;
+  }
 }
