@@ -7,7 +7,7 @@ import { Course } from './course';
   providedIn: 'root',
 })
 export class CourseService {
-  private courseUrl: string = 'http://localhost:4200/api/courses';
+  private courseUrl: string = 'http://localhost:3100/api/courses';
 
   constructor(private httpCliente: HttpClient) {}
 
